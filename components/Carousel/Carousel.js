@@ -17,21 +17,37 @@
     <div class="right-button"> > </div>
   </div>
 */
-class Carousel {
-    constructor(carousel) {
-        this.carousel = carousel;
-        this.lftButton = this.carousel.querySelector(".left-button");
-        this.rgtButton = this.carousel.querySelector(".right-button");
+const carouselStretch = document.querySelector('.carousel-container');
 
-        this.slides = this.carousel.querySelectorAll("img");
-        this.slides = Array.from(this.slides);
-        this.slides.forEach(slide => slide.style.zIndex = 1);
-        this.counter = 0;
-        this.slidesLength = this.slides.length;
-        this.slidesIndex = this.slides[this.counter]
-        this.changeLeft = this.changePrev.bind(this);
-        this.lButton.addEventListener('click', this.changeLeft);
-        this.changeRight = this.changeNext.bind(this);
-        this.bButton.addEventListener('click', this.changeRight);
-    }
-}
+const carouselArray = [
+    "./assets/carousel/mountains.jpeg",
+    "./assets/carousel/computer.jpeg",
+    "./assets/carousel/trees.jpeg",
+    "./assets/carousel/turntable.jpeg"
+];
+
+
+const Carousel = arr => {
+
+        const carousel = document.createElement('div');
+        const leftButton = document.createElement('div');
+        const img = document.createElement('img');
+        const rightButton = document.createElement('div');
+
+
+        carousel.appendChild(leftButton);
+        carousel.appendChild(img);
+        carousel.appendChild(rightButton);
+
+
+        carousel.classList.add('carousel');
+        leftButton.classList.add('left-button');
+        rightButton.classList.add('right-button');
+
+        leftButton.textContent = '<';
+        rightButton.textContent = '>';
+        img.src = arr[counter];
+
+        counter = 0;
+        const pics = items.length;
+        const current = items[0];
