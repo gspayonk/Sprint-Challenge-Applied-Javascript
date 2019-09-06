@@ -17,3 +17,21 @@
     <div class="right-button"> > </div>
   </div>
 */
+class Carousel {
+    constructor(carousel) {
+        this.carousel = carousel;
+        this.lftButton = this.carousel.querySelector(".left-button");
+        this.rgtButton = this.carousel.querySelector(".right-button");
+
+        this.slides = this.carousel.querySelectorAll("img");
+        this.slides = Array.from(this.slides);
+        this.slides.forEach(slide => slide.style.zIndex = 1);
+        this.counter = 0;
+        this.slidesLength = this.slides.length;
+        this.slidesIndex = this.slides[this.counter]
+        this.changeLeft = this.changePrev.bind(this);
+        this.lButton.addEventListener('click', this.changeLeft);
+        this.changeRight = this.changeNext.bind(this);
+        this.bButton.addEventListener('click', this.changeRight);
+    }
+}
