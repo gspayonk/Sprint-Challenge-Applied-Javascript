@@ -18,6 +18,7 @@
   </div>
 */
 
+const carouselStretch = document.querySelector('.carousel-container');
 
 
 const Carousel = () => {
@@ -53,15 +54,18 @@ const Carousel = () => {
     imgFour.src = './assets/carousel/turntable.jpeg'
     alt = '4';
 
-    document.querySelector('.carousel-container').appendChild(carousel);
-
-
+    imgOne.style.display = 'block';
+    carouselStretch.appendChild(carousel);
 
     //defining global counter
     var counter = 0;
     var items = Array.from(document.querySelectorAll('.carousel img'));
     var amount = items.length;
     var current = items[0];
+
+    carouselStretch.classList.add('active');
+
+
 
     //function to navigate
     function navigate(direction) {
