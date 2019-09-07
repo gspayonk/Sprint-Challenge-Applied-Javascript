@@ -17,28 +17,26 @@
     <div class="right-button"> > </div>
   </div>
 */
-const carouselStretch = document.querySelector('.carousel-container');
-
-const carouselArray = [
-    "./assets/carousel/mountains.jpeg",
-    "./assets/carousel/computer.jpeg",
-    "./assets/carousel/trees.jpeg",
-    "./assets/carousel/turntable.jpeg"
-];
 
 
-const Carousel = arr => {
+
+const Carousel = () => {
 
     const carousel = document.createElement('div');
     const leftButton = document.createElement('div');
-    const img = document.createElement('img');
+    const imgOne = document.createElement('img');
+    const imgTwo = document.createElement('img');
+    const imgThree = document.createElement('img');
+    const imgFour = document.createElement('img');
     const rightButton = document.createElement('div');
 
 
     carousel.appendChild(leftButton);
-    carousel.appendChild(img);
+    carousel.appendChild(imgOne);
+    carousel.appendChild(imgTwo);
+    carousel.appendChild(imgThree);
+    carousel.appendChild(imgFour);
     carousel.appendChild(rightButton);
-
 
     carousel.classList.add('carousel');
     leftButton.classList.add('left-button');
@@ -46,33 +44,49 @@ const Carousel = arr => {
 
     leftButton.textContent = '<';
     rightButton.textContent = '>';
-    img.src = arr[counter];
+    imgOne.src = './assets/carousel/mountains.jpeg'
+    alt = '1';
+    imgTwo.src = './assets/carousel/computer.jpeg'
+    alt = '2';
+    imgThree.src = './assets/carousel/trees.jpeg'
+    alt = '3';
+    imgFour.src = './assets/carousel/turntable.jpeg'
+    alt = '4';
 
-    counter = 0;
-    const pics = items.length;
-    const current = items[0];
+    document.querySelector('.carousel-container').appendChild(carousel);
 
-    box.classList.add('active');
 
+
+    //defining global counter
+    var counter = 0;
+    var items = Array.from(document.querySelectorAll('.carousel img'));
+    var amount = items.length;
+    var current = items[0];
+
+    //function to navigate
     function navigate(direction) {
+
         current.classList.remove('current');
-        counter = counter + direction;
-        if (direction === -1 &&
-            counter < 0) {
-            counter = pics - 1;
-        }
-        if (direction === 1 &&
-            !items[counter]) {
-            counter = 0;
-        }
+
+        counter = (counter + direction) % amount;
+        counter = counter < 0 ? amount - 1 : counter;
+
         current = items[counter];
         current.classList.add('current');
-    }
-    rightButton.addEventListener('click', event => {
-        navigate(1);
-    });
-    leftButton.addEventListener('click', event => {
-        navigate(-1);
-    });
-    navigate(0);
-}();
+
+        //event handlers for buttons
+        leftButton.addEventListener('click', event => {
+            navigate(1);
+            console.log('click left working');
+        });
+
+        rightButton.addEventListener('click', event => {
+            console.log('click right working');
+            navigate(-1);
+        });
+        navigate(0);
+
+    };
+};
+
+Carousel();
